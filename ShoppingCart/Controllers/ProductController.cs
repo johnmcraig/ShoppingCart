@@ -21,7 +21,34 @@ namespace ShoppingCart.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Cart = LocalData.Cart;
+            ViewBag.Images = Images;
+
             return View(await _dbContext.Products.ToListAsync());
+        }
+
+        public ActionResult Init()
+        {
+            Product product = _dbContext.Products.FirstOrDefault();
+
+            if(product == null)
+            {
+                int count = 0;
+                int price = 50;
+                string name = "My Product";
+                while (count < 12)
+                {
+                    Product p = new Product();
+                    p.Name = name + (count + 1);
+                    price = (price + (count * 20));
+                    p.Price = price.ToString();
+
+                    _dbContext.Products.Add(p);
+                    _dbContext.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
