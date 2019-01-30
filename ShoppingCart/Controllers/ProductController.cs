@@ -73,5 +73,10 @@ namespace ShoppingCart.Controllers
 
             return RedirectToAction("Index");
         }
+    
+        public ActionResult Expand()
+        {
+            return RedirectToAction("Index", "Cart");
+        }
     }
 }
