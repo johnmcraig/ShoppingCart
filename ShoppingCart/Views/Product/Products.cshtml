@@ -1,0 +1,57 @@
+@model IEnumerable<ShoppingCart.Data.Product>
+
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Random r = new Random();
+}
+
+@if(ViewBag.Cart.Count > 0)
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default pull-right">
+                <div class="panel-body">
+                    <h3>
+                        Items in Cart: 
+                        <span>
+                            @ViewBag.Cart.Count
+                        </span>
+                    </h3>
+                    @Html.ActionLink("Expand", "Expand", new {}, new { @class="btn btn-defualt"})
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<h1>My Products</h1>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        var imageName = ViewBag.Images[r.Next(1,4)];
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>
+                        Name:
+                        <span>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </span>
+                    </h3>
+                    <img src="~/images/@imageName" class="img-responsive"/>
+                    <h4>
+                        <span>
+                        @Html.DisplayFor(modelItem => item.Price) USD
+                        </span>
+                    </h4>
+                </div>
+                <div class="panel-footer clearfix">
+                    @Html.ActionLink("Add to Cart", "AddToCart", new { id = item.Id}, new { @class="btn btn-default"})
+                </div>
+            </div>
+        </div>
+    }
+</div>
