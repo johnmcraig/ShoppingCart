@@ -36,6 +36,7 @@ namespace ShoppingCart.Controllers
                 int count = 0;
                 int price = 50;
                 string name = "My Product";
+                
                 while (count < 12)
                 {
                     Product p = new Product();
