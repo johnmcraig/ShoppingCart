@@ -45,7 +45,30 @@ namespace ShoppingCart.Controllers
 
                     _dbContext.Products.Add(p);
                     _dbContext.SaveChanges();
+
+                    count++;
                 }
+            }
+
+            return RedirectToAction("Index");
+        }
+    
+        public ActionResult AddToCart(int id)
+        {
+            Product product = _dbContext.Products.Find(id);
+
+            Cart cart = LocalData.Cart.Where(i => i.Product.Id == product.Id).FirstOrDefault();
+        
+            if (cart == null)
+            {
+                Cart c = new Cart();
+                c.Product = product;
+                c.Amount = 1;
+                LocalData.Cart.Add(c);
+            }
+            else
+            {
+                cart.Amount += 1;
             }
 
             return RedirectToAction("Index");
