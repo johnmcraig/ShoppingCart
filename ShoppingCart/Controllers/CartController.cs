@@ -60,18 +60,22 @@ namespace ShoppingCart.Controllers {
                 totalPrice += Int32.Parse(cart.Product.Price) * cart.Amount;
             }
 
-            Order order = new Order();
-            order.Paid = false;
-            order.Price = totalPrice.ToString();
-            
+            Order order = new Order
+            {
+                Paid = false,
+                Price = totalPrice.ToString()
+            };
+
             _dbContex.Orders.Add(order);
 
             foreach(Cart cart in LocalData.Cart)
             {
-                OrderDetails orderDetails = new OrderDetails();
-                orderDetails.OrderId = order.Id;
-                orderDetails.ProductId = cart.Product.Id;
-                orderDetails.Amount = cart.Amount;
+                OrderDetails orderDetails = new OrderDetails
+                {
+                    OrderId = order.Id,
+                    ProductId = cart.Product.Id,
+                    Amount = cart.Amount
+                };
 
                 _dbContex.OrderDetails.Add(orderDetails);
             }

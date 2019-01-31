@@ -12,7 +12,7 @@ namespace ShoppingCart.Controllers
     {
         public IActionResult Index()
         {
-            return RedirectToAction("Init", "Products");
+            return RedirectToAction("Init", "Product");
         }
 
         public IActionResult Privacy()

@@ -12,7 +12,7 @@ namespace ShoppingCart.Controllers
     public class ProductController : Controller
     {
         private readonly ShoppingCartDbContext _dbContext;
-        public List<string> Images = new List<string>() {"image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg"};
+        public List<string> Images = new List<string>() { "image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg" };
 
         public ProductController(ShoppingCartDbContext dbContext)
         {
@@ -39,8 +39,11 @@ namespace ShoppingCart.Controllers
                 
                 while (count < 12)
                 {
-                    Product p = new Product();
-                    p.Name = name + (count + 1);
+                    Product p = new Product
+                    {
+                        Name = name + (count + 1)
+                    };
+
                     price = (price + (count * 20));
                     p.Price = price.ToString();
 
@@ -62,9 +65,11 @@ namespace ShoppingCart.Controllers
         
             if (cart == null)
             {
-                Cart c = new Cart();
-                c.Product = product;
-                c.Amount = 1;
+                Cart c = new Cart
+                {
+                    Product = product,
+                    Amount = 1
+                };
                 LocalData.Cart.Add(c);
             }
             else

@@ -10,46 +10,46 @@
 {
     <div class="row">
         <div class="col-sm-12">
-            <div class="panel panel-default pull-right">
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-body">
                     <h3>
                         Items in Cart: 
                         <span>
                             @ViewBag.Cart.Count
                         </span>
                     </h3>
-                    @Html.ActionLink("Expand", "Expand", new {}, new { @class="btn btn-defualt"})
+                    @Html.ActionLink("Expand", "Expand", new {}, new { @class="btn btn-info btn-lg"})
                 </div>
             </div>
         </div>
     </div>
 }
 
-<h1>My Products</h1>
+<h1>Products List</h1>
 
 <div class="row">
     @foreach (var item in Model)
     {
-        var imageName = ViewBag.Images[r.Next(1,4)];
+        var imageName = ViewBag.Images[r.Next(0, 4)];
 
         <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-body">
                     <h3>
                         Name:
                         <span>
                             @Html.DisplayFor(modelItem => item.Name)
                         </span>
                     </h3>
-                    <img src="~/images/@imageName" class="img-responsive"/>
+                    <img src="~/images/@imageName" class="card-img"/>
                     <h4>
                         <span>
                         @Html.DisplayFor(modelItem => item.Price) USD
                         </span>
                     </h4>
                 </div>
-                <div class="panel-footer clearfix">
-                    @Html.ActionLink("Add to Cart", "AddToCart", new { id = item.Id}, new { @class="btn btn-default"})
+                <div class="card-footer clearfix">
+                    @Html.ActionLink("Add to Cart", "AddToCart", new { id = item.Id}, new { @class="btn btn-primary btn-sm"})
                 </div>
             </div>
         </div>

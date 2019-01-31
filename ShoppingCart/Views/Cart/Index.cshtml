@@ -1,0 +1,56 @@
+@using ShoppingCart.Models;
+
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+    <p>
+        @ViewBag.Message
+    </p>
+    @Html.ActionLink("Continue Shopping", "ToProduct")
+}
+
+@if(Model.Count > 0)
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Total Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach(Cart cart in Model)
+            {
+            <tr>
+                <td>@cart.Product.Name</td>
+                <td>@cart.Product.Price</td>
+                <td>@cart.Amount</td>
+                <td>@(cart.Amount  * Int32.Parse(cart.Product.Price)) USD</td>
+                <td>
+                    @Html.ActionLink("Remove", "Remove", new { id = cart.Product.Id }, new { @class="btn btn-danger btn-sm"})
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="pull-left">Total Amount: @ViewBag.TotalPrice</h3>
+            <h3 class="pull-right">@Html.ActionLink("Check Out", "CheckOut", new { }, new { @class = "btn btn-success btn-lg" })</h3>
+        </div>
+    </div>
+} else
+{
+    <p>No Items in the Cart</p>
+}
+
+
