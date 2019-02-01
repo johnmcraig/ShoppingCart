@@ -12,7 +12,7 @@ namespace ShoppingCart.Data
         {
         }
         
-        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
         public DbSet<Product> Products { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
     }

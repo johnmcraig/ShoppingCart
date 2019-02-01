@@ -10,7 +10,7 @@
     <p>
         @ViewBag.Message
     </p>
-    @Html.ActionLink("Continue Shopping", "ToProduct")
+    @Html.ActionLink("Continue Shopping", "Index", "Product", new { }, new { @class = "btn btn-primary btn-sm" })
 }
 
 @if(Model.Count > 0)

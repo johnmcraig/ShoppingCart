@@ -11,11 +11,14 @@ namespace ShoppingCart.Controllers {
     public class CartController : Controller
     {
         private readonly ShoppingCartDbContext _dbContex;
+
         public static string Message;
+
         public CartController (ShoppingCartDbContext dbContex)
         {
             _dbContex = dbContex;
         }
+
         public IActionResult Index()
         {
             int totalPrice = 0;
@@ -66,7 +69,7 @@ namespace ShoppingCart.Controllers {
                 Price = totalPrice.ToString()
             };
 
-            _dbContex.Orders.Add(order);
+            _dbContex.Order.Add(order);
 
             foreach(Cart cart in LocalData.Cart)
             {
