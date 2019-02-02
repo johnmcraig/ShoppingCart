@@ -13,3 +13,6 @@ The following was used to create the project:
 - A script written in SQL to scaffold a database
 - ASP.Net Core 2.2
 - Bootstrap 4
+
+## License
+GNU General Public License v3
