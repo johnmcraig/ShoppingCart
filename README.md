@@ -14,5 +14,8 @@ The following was used to create the project:
 - ASP.Net Core 2.2
 - Bootstrap 4
 
+## Images
+Images used for this project are copyright their respective artist and were acquired from PIXABY as royalty free images.
+
 ## License
 GNU General Public License v3
